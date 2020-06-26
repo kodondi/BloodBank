@@ -59,7 +59,7 @@ if($_SESSION['donorstatus']=="")
 </div>
 <div class="nav_bg">
 <div class="wrap">
-	<ul class="nav">
+		<ul class="nav">
 			<li class="active"><a href="chngpwd.php">Change Password</a></li>	
 			<li><a href="updateprofile.php">Update Profile</a></li>            
 			<li><a href="blooddonated.php">Blood Donated</a></li>
@@ -69,35 +69,35 @@ if($_SESSION['donorstatus']=="")
            
             </ul>
 	</div>
-<div style="height:300px; width:1000px; margin:auto; margin-top:50px; margin-bottom:50px; background-color:#f8f1e4; border:2px solid red; box-shadow:4px 1px 20px black;">
+<div style="height:300px; width:800px; margin:auto; margin-top:50px; margin-bottom:50px; background-color:#f8f1e4; border:2px solid red; box-shadow:4px 1px 20px black;">
      <form method="post" enctype="multipart/form-data">
- <table cellpadding="20" cellspacing="20" width="1000px" height="200px"  style="margin:auto" >
-
-   <tr><td colspan="7" align="center"><img src="Images/brequest.png" height="90px" /></td></tr>
-
-   <tr><td>&nbsp;</td><td>&nbsp;</td></tr>   
- <tr style="background-color:bisque" align="center" class="bold">            
-             <td class="bold" style="color:red"  >Blood Group</td><td align="center">Name</td><td align="center">Gender</td><td align="center">Contact No</td><td align="center">Mobile No</td><td align="center">Email</td>
-            <td align="center">Till Required Date</td>
+  <table cellspacing="0" cellpadding="0" width="800px" style="margin:auto" class="tableborder" >
+        
+        <tr><td colspan="4" align="center"><img src="Images/viewdonation.png" height="80px" /> </td></tr>
+        <tr><td colspan="4">&nbsp;</td></tr>
+   
+             <tr style="background-color:bisque" align="center" class="bold">     
+           <td>Camp Name</td><td>Date of Donation</td><td>No. of Units</td><td>Email Id</td>
         </tr>
-                   
-
-
-
-<?php
+          <tr><td colspan="4">&nbsp;</td></tr>
+    <?php
 
 	
 $cn=mysqli_connect("localhost","root","","bloodbank");
-$s="select * from requestes";
+$s="select * from camp,donation where camp.camp_id=donation.camp_id and donation.email='" . $_SESSION["email"] . "'";
 	$result=mysqli_query($cn,$s);
 	$r=mysqli_num_rows($result);
 	//echo $r;
 	while($data=mysqli_fetch_array($result))
 	{
-				echo"<tr><td  style=' padding-left:50px'>$data[0]</td><td  style=' padding-left:10px'>$data[1]</td><td  style=' padding-left:20px'>$data[2]</td><td  style=' padding-left:30px'>$data[3]</td><td  style=' padding-left:50px'>$data[4]</td><td  style=' padding-left:50px'>$data[5]</td><td  style=' padding-left:60px'>$data[6]</td></tr>";
+				echo"<tr><td  style=' padding-left:50px'>$data[1]</td><td  style=' padding-left:50px'>$data[9]</td><td  style=' padding-left:40px'>$data[10]</td><td  style=' padding-left:30px'>$data[12]</td></tr>";
 			}
 			mysqli_close($cn);
-			?>
+			?>               
+
+
+
+
 
 
 </table>
